@@ -54,7 +54,7 @@
 	function validates(id){
         if (document.getElementById('is_installments'+id).checked){
             $(".yes_installment"+id).show();
-            $("#ppay"+id).hide();
+            //$("#ppay"+id).hide();
 			var service = $(".service-charge"+id).val();
 			$(".balance").val(service);
 			$(".done-schedule").show();
@@ -64,7 +64,7 @@
             $("#ppay"+id).show();
 			$(".done-schedule").hide();
 			$("#customer-payment"+id).prop('required',true);
-s        }
+        }
     }
 	
 	function validates2(id){
@@ -336,6 +336,8 @@ s        }
 		 });
 	});  
   </script>
+  
+ 
   <?php
   	
 		$approvedr	= $mysqli->query("

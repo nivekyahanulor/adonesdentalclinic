@@ -70,7 +70,7 @@
 
 	?>
   <script>
-  var link = 'http://localhost/mlorensev2/';
+  var link = 'http://localhost/adonesdentalclinic/';
   // var link = 'http://mlorense.com/';
   $(document).ready(function() {
 	  
@@ -212,6 +212,24 @@
 	  }
 	}
   
+  </script>
+    <script>
+	$('#get-doc-time').on('change', function() {
+		
+	    var id = this.value;
+		$.ajax({
+			   type: "POST",
+			   url:link+'/controller/get-doc-time.php',
+			   data : {
+					 'id'         : id, 
+				},
+			   success: function(data)
+			   {
+				 $("#dc-res").show(); 
+				 $("#dc-res").html(data); 
+			   }
+		 });
+	});  
   </script>
 </body>
 <div class="modal" id="calendarmodal" tabindex="-1" role="dialog"

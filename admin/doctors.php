@@ -31,6 +31,7 @@
                 <thead>
                   <tr>
                     <th scope="col" class="text-start"> NAME</th>
+                    <th scope="col" class="text-start"> TIME</th>
                     <th scope="col" class="text-start"> PHOTO</th>
                     <th scope="col" class="text-center"> ACTION </th>
                   </tr>
@@ -38,7 +39,8 @@
                 <tbody>
 				<?php while($val = $tbl_doctors->fetch_object()){ ?>
                   <tr>
-                    <td class="text-start"><?php echo $val->name;?></td>
+                    <td class="text-start"><a href="doctor-appointments.php?id=<?php echo $val->doctor_id;?>&name=<?php echo $val->name;?>"><?php echo $val->name;?></a></td>
+                    <td class="text-start"><?php echo $val->times .' - ' .  $val->timee;?></td>
                     <td class="text-start"><img src="../page/front/doctor/<?php echo $val->photo;?>" width="200px"></td>
                     <td class="text-center">
 						<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#edit<?php echo $val->doctor_id;?>"> <i class="bi bi-pencil-square"></i></button>
@@ -126,6 +128,40 @@
 						<div class="col-md-12">
 						  <label for="inputName5" class="form-label">Doctor Name : </label>
 						  <input type="text" class="form-control" name="name" required>
+						</div>
+						<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Time Start : </label>
+						  <select type="time" class="form-control" name="times" required>
+								<option value=""> - Select Time -</option>
+								<option> 8:00 AM</option>
+								<option> 9:00 AM</option>
+								<option> 10:00 AM</option>
+								<option> 11:00 AM</option> 
+								<option> 1:00 PM</option>
+								<option> 2:00 PM</option>
+								<option> 3:00 PM</option>
+								<option> 4:00 PM</option>
+								<option> 5:00 PM</option>
+								<option> 6:00 PM</option>
+								<option> 7:00 PM</option>
+						  </select>
+						</div>
+						<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Time End : </label>
+						 <select type="time" class="form-control" name="timee" required>
+								<option value=""> - Select Time -</option>
+								<option> 8:00 AM</option>
+								<option> 9:00 AM</option>
+								<option> 10:00 AM</option>
+								<option> 11:00 AM</option> 
+								<option> 1:00 PM</option>
+								<option> 2:00 PM</option>
+								<option> 3:00 PM</option>
+								<option> 4:00 PM</option>
+								<option> 5:00 PM</option>
+								<option> 6:00 PM</option>
+								<option> 7:00 PM</option>
+						  </select>
 						</div>
 					
 						<div class="col-md-12">

@@ -49,6 +49,7 @@
                 <thead>
                   <tr>
                     <th scope="col"> SERVICE</th>
+                    <th scope="col"  class="text-center">DENTIST NAME</th>
                     <th scope="col"  class="text-center"> DATE OF APPOINTMENT</th>
                     <th scope="col"  class="text-center"> TIME OF APPOINTMENT</th>
                     <th scope="col"> STATUS </th>
@@ -67,6 +68,7 @@
 					}
 					?>
 					</td>
+                    <td class="text-center"><?php echo $val->name;?></td>
                     <td class="text-center"><?php echo $val->request_date;?></td>
 					<td  class="text-center"><?php echo date("g:i A", strtotime($val->request_time));?></td>
                     <td>
@@ -223,6 +225,19 @@
                     </div>
                     <div class="modal-body">
                       <form class="row g-3" method="POST">
+					  	<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Doctor : </label>
+						  <select type="time" class="form-control" name="doc_id" id="get-doc-time" required>
+						  	<option value=""> - Select Time -</option>
+							   <?php 
+							  $tbl_doctors = $mysqli->query("SELECT * FROM tbl_doctors");
+							  while($doc = $tbl_doctors->fetch_object()){ ?>
+								<option value="<?php echo $doc->doctor_id;?>"><?php echo $doc->name;?></option>
+							  <?php } ?>
+								
+						  </select>
+						  <div id="dc-res"> Time: </div>
+						</div>
 						<div class="col-md-12">
 						  <label for="inputName5" class="form-label">Services : </label><br>
 						  <?php 

@@ -61,6 +61,7 @@
                   <tr>
                     <th scope="col" class="text-center"> TRANSACTION NO. </th>
                     <th scope="col" class="text-start"> NAME OF PATIENTS </th>
+                    <th scope="col" class="text-start"> NAME OF DENTIST </th>
                     <th scope="col" class="text-start"> SERVICE</th>
 					
                     <th scope="col" class="text-center"> DATE OF APPOINTMENT</th>
@@ -92,6 +93,7 @@
 				<?php } ?>
                     <td class="text-center"><?php echo $val->id;?></td>
                     <td class="text-start"><?php echo $val->firstname .' '. $val->lastname;?></td>
+                    <td class="text-center"><?php echo $val->name;?></td>
                     <td class="text-start">
 					<?php $services =  str_replace( array('[',']') , ''  ,$val->s_id );
 					$res_ser = $mysqli->query("SELECT * FROM tbl_offer where id IN ($services)");

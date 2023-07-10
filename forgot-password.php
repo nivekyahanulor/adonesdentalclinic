@@ -52,7 +52,7 @@ if(isset($_SESSION['type'])){
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                  <img src="page/front/img/logo.png" width="250px" alt="">
+                  <img src="page/front/img/logo.jpg" width="100px" alt="">
               </div><!-- End Logo -->
 
               <div class="card mb-3">

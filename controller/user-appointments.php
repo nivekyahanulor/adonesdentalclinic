@@ -2,9 +2,10 @@
 include('database.php');
 error_reporting(0);
 $user = $_SESSION['id'];
-$tbl_appointments = $mysqli->query("SELECT a.* ,b.firstname , b.lastname , c.service FROM tbl_appointments a 
+$tbl_appointments = $mysqli->query("SELECT a.* ,b.firstname , b.lastname , c.service , d.name FROM tbl_appointments a 
 									LEFT JOIN tbl_signup b on b.id = a.user_id
 									LEFT JOIN tbl_offer c on a.service_id = c.id
+									LEFT JOIN tbl_doctors d on a.doctor_id = d.doctor_id
 									where a.user_id = '$user'");
 
 
@@ -43,7 +44,8 @@ if(isset($_POST['submit-schedule'])){
 	$date     =  $_POST['date'];
 	$time     =  $_POST['time'];
 	$userid   =  $_POST['userid'];
-	$mysqli->query("INSERT INTO tbl_appointments (user_id , request_date,request_time,service_id) VALUES ('$userid', '$date' , '$time' , '$services') ");
+	$doc_id   =  $_POST['doc_id'];
+	$mysqli->query("INSERT INTO tbl_appointments (user_id , request_date,request_time,service_id,doctor_id) VALUES ('$userid', '$date' , '$time' , '$services', '$doc_id') ");
 	echo "<script> window.location.href='index.php?added'; </script>";
 }
 

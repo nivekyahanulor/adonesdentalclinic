@@ -88,6 +88,7 @@
 						  <label for="inputName5" class="form-label">Password : </label>
 						  <input type="password" class="form-control" name="password" value="<?php echo $val->password;?>" required>
 						</div>
+						
 
 						<div class="col-12">
 							<div id="passres<?php echo $val->id;?>"></div>
@@ -168,12 +169,18 @@
 						</div><br>
 						<div class="col-md-12">
 						  <label for="inputName5" class="form-label">Password : </label>
-						  <input type="password" class="form-control" name="password" required>
+						  <input type="password" class="form-control password" name="password" id= "" required>
 						</div><br>
-						
+						<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Confirm Password : </label>
+						  <input type="password" class="form-control password1" name="password" id= "" required>
+						</div><br>
+						<span class='message'></span>
+
                     </div>
+
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary" id="process" name="add-user" >Add</button>
+                      <button type="submit" class="btn btn-primary process-add" id="process" name="add-user" style="display:none;" >Add</button>
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
 					</form>

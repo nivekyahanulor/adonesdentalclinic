@@ -20,7 +20,7 @@
 			<h5 class="card-title">List of Appointments  
 				<?php
 					if(isset($_GET['data']) == 'pending'){
-					$mysqli->query("UPDATE tbl_appointments set is_new = 2 , is_admin = 1 where approved='0'");
+					$mysqli->query("UPDATE tbl_appointments set is_new = 2 , is_admin = 1 ");
 					}  if(isset($_GET['data']) == 'cancelled'){
 					$mysqli->query("UPDATE tbl_appointments set is_new = 2, is_admin = 1 where approved='4' OR approved='3'");
 					}
@@ -226,9 +226,9 @@
                     <div class="modal-body">
                       <form class="row g-3" method="POST">
 					  	<div class="col-md-12">
-						  <label for="inputName5" class="form-label">Doctor : </label>
+						  <label for="inputName5" class="form-label">Dentist : </label>
 						  <select type="time" class="form-control" name="doc_id" id="get-doc-time" required>
-						  	<option value=""> - Select Time -</option>
+						  	<option value=""> - Select Dentist -</option>
 							   <?php 
 							  $tbl_doctors = $mysqli->query("SELECT * FROM tbl_doctors");
 							  while($doc = $tbl_doctors->fetch_object()){ ?>

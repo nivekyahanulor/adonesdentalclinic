@@ -19,7 +19,9 @@ if(isset($_POST['update-doctor'])){
 	$name      = $_POST['name'];
 	$logo      = $_POST['logo'];
 	$id        = $_POST['id'];
-	
+	$times      = $_POST['times'];
+	$timee      = $_POST['timee'];
+	$details    = $_POST['details'];
 	if($logo ==""){
 			$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 			$image_name = addslashes($_FILES['image']['name']);
@@ -38,7 +40,7 @@ if(isset($_POST['update-doctor'])){
 			}
 	}
 	
-	$mysqli->query("UPDATE tbl_doctors set name = '$name',photo = '$location' where doctor_id='$id'");
+	$mysqli->query("UPDATE tbl_doctors set name = '$name',photo = '$location',times = '$times',timee = '$timee',details = '$details' where doctor_id='$id'");
 	echo "<script> window.location.href='doctors.php?updated'; </script>";
 }
 
@@ -53,6 +55,7 @@ if(isset($_POST['add-doctor'])){
 	$name       = $_POST['name'];
 	$times      = $_POST['times'];
 	$timee      = $_POST['timee'];
+	$details    = $_POST['details'];
 	
 	$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
     $image_name = addslashes($_FILES['image']['name']);
@@ -60,7 +63,7 @@ if(isset($_POST['add-doctor'])){
     move_uploaded_file($_FILES["image"]["tmp_name"], "../page/front/doctor/" . $_FILES["image"]["name"]);
 	$location   =  $_FILES["image"]["name"];
 	
-	$mysqli->query("INSERT INTO tbl_doctors (name,times,timee, photo) VALUES ('$name','$times','$timee','$location')");
+	$mysqli->query("INSERT INTO tbl_doctors (name,times,timee, photo, details) VALUES ('$name','$times','$timee','$location','$details')");
 	echo "<script> window.location.href='doctors.php?added'; </script>";
 }
 

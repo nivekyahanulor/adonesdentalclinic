@@ -109,7 +109,7 @@
                     <div class="col-12 pass_show">
                       <label for="yourPassword" class="form-label">Password</label>
 					  <div class="input-group mb-3 " >
-                        <input type="password" name="password" id="password" class="form-control" id="yourPassword" required>
+                        <input type="password" name="password" id="password" class="form-control" required>
 						   <span class="input-group-text" onclick="password_show_hide();">
 							  <i class="bi bi-eye" id="show_eye"></i>
 							  <i class="bi bi-eye-slash d-none" id="hide_eye"></i>
@@ -120,13 +120,27 @@
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
+                   <div class="col-12 pass_show">
+                      <label for="yourPassword" class="form-label">Confirm Password</label>
+					  <div class="input-group mb-3 " >
+                        <input type="password" id="password1" class="form-control"  required>
+						   <span class="input-group-text" onclick="password_show_hide1();">
+							  <i class="bi bi-eye" id="show_eye1"></i>
+							  <i class="bi bi-eye-slash d-none" id="hide_eye1"></i>
+							</span>
+						</div>
+					   
+						
+                      <div class="invalid-feedback">Please enter your password!</div>
+                    </div>
+					<span id='message'></span>
                   
                     <div class="col-12">
 					   <input type="checkbox" required> I Agree to the <a href="" type="button" data-bs-toggle="modal" data-bs-target="#squarespaceModal"> Terms and Condition </a>
 					   <div class="invalid-feedback">Agree to the Terms and Condition</div>
 
 					   <br> <br>
-                      <button class="btn btn-primary w-100" type="submit" name="create-account">Create Account</button>
+                      <button class="btn btn-primary w-100" type="submit" name="create-account" id="create-btn" style="display:none;">Create Account</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
@@ -171,7 +185,7 @@
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <!-- Vendor JS Files -->
   <script src="page/back/vendor/bootstrap/js/bootstrap.bundle.js"></script>
   <script src="page/back/vendor/php-email-form/validate.js"></script>
@@ -201,6 +215,35 @@
   }
 }
   
+  </script> 
+  <script>
+ function password_show_hide1() {
+  var x = document.getElementById("password1");
+  var show_eye = document.getElementById("show_eye1");
+  var hide_eye = document.getElementById("hide_eye1");
+  hide_eye.classList.remove("d-none");
+  if (x.type === "password") {
+    x.type = "text";
+    show_eye.style.display = "none";
+    hide_eye.style.display = "block";
+  } else {
+    x.type = "password";
+    show_eye.style.display = "block";
+    hide_eye.style.display = "none";
+  }
+}
+  
+  </script>
+  <script>
+  $('#password1').on('keyup', function () {
+  if ($('#password').val() == $('#password1').val()) {
+	$("#create-btn").show();
+    $('#message').html('Password Match').css('color', 'green');
+  } else {
+	$("#create-btn").hide();
+    $('#message').html('Not Password Match').css('color', 'red');
+  }
+});
   </script>
 </body>
 

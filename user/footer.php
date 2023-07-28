@@ -45,7 +45,7 @@
 				
 					 $start = $res1->request_date;
 					 
-					 $tbl_date = $mysqli->query("SELECT count(request_date)dc, request_date FROM `tbl_appointments` where request_date='$start' and  approved !=0 and approved !=4");
+					 $tbl_date = $mysqli->query("SELECT count(request_date)dc, request_date FROM `tbl_appointments` where request_date='$start' and  approved !=0 and approved !=4 and approved !=2");
 					 $dr       = $tbl_date->fetch_assoc();
 					 
 					 if($dr['dc'] >=11){

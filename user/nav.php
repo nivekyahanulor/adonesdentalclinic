@@ -16,7 +16,7 @@
 	  <li class="nav-item dropdown pe-3">
 			<?php 
 			include('../controller/database.php');
-			$isnew = $mysqli->query("SELECT a.*,b.* FROM tbl_appointments a left join tbl_signup b on b.id = a.user_id where a.is_new=1 and a.is_admin=1");
+			$isnew = $mysqli->query("SELECT a.*,b.* FROM tbl_appointments a left join tbl_signup b on b.id = a.user_id where a.is_new=1 and a.is_admin=1 and b.id = a.user_id");
 			$row_cnt = $isnew->num_rows;
 
 			$ispromo = $mysqli->query("SELECT * from tbl_event where is_promo = 1");

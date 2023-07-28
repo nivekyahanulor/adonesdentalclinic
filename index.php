@@ -1,13 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-if(isset($_SESSION['type'])){
-	if($_SESSION['type'] == 'patient'){
-		header("location:user/index.php");
-	} else{
-		header("location:admin/index.php");
-	}
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,6 +148,40 @@ if(isset($_SESSION['type'])){
 			display: none;    
 		}
 	 </style>
+	 <style>
+#slider	{ 
+    position:relative;
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    width:100%;
+    height:730px;
+    border: 1px solid #008000;     
+    overflow:hidden; 
+}
+#slider li { 
+}
+#slider img {
+    width:100%;
+    height:730px;
+}
+#slider p { 
+    position:absolute;
+    bottom:0;
+    padding:20px;
+    color:#ffffff;
+    margin:10%;
+    left:0;
+    right:0; 
+	font-size :30px;
+}
+
+.maintxt {position: relative;}
+.maintxt > img, .overlay-text {position: absolute;}
+#cardhover:hover {
+  background: #ADD8E6;
+}
+</style>
 </head>
 
 <body>
@@ -162,62 +190,65 @@ if(isset($_SESSION['type'])){
   <header id="header" class="fixed-top" style="background-color:#0d279c;">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.php"  style="color:#fff;">A.A. DONES</a></h1>
+      <h1 class="logo"><a href="index.php"  style="color:#fff;"> <img src="page/front/img/logo.jpg" alt="" class="img-fluid"> A.A. DONES</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" style="color:#fff;" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto"  style="color:#fff;" href="#about">About</a></li>
+          <li><a class="nav-link scrollto active" style="color:#fff;" href="index.php">Home</a></li>
           <li><a class="nav-link scrollto"  style="color:#fff;" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto"  style="color:#fff;" href="#doctors">Doctors</a></li>
-          <li><a class="nav-link scrollto"  style="color:#fff;" href="#calendar">Calendar</a></li>
-          <li><a class="nav-link scrollto"  style="color:#fff;" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto"  style="color:#fff;" href="#doctors">Dentist</a></li>
+		  <li><a class="nav-link scrollto"  style="color:#fff;" href="#about">About</a></li>
+		  <?php
+			if(isset($_SESSION['type'])){
+				if($_SESSION['type'] == 'patient'){
+			?>
+			 <li><a class="nav-link scrollto"  style="color:#fff;" href="user/index.php">Appointment</a></li>
+			 <li><a class="nav-link scrollto"  style="color:#fff;" href="user/profile.php">Profile</a></li>
+			 <li><a class="nav-link scrollto"  style="color:#fff;" href="user/logout.php">Sign-Out</a></li>
+			<?php } else{ ?>
+			 <li><a class="nav-link scrollto"  style="color:#fff;" href="admin/index.php">Dashboard</a></li>
+			<?php	}
+			} else { 
+			?>
           <li><a class="nav-link scrollto"  style="color:#fff;" href="login.php">Login</a></li>
           <li><a class="nav-link scrollto"  style="color:#fff;" href="register.php">Register</a></li>
+		<?php } ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
-      <div class="row justify-content-center">
-        <div class="col-xl-7 col-lg-9 text-center">
-          <img src="page/front/img/logo.jpg" alt="" class="img-fluid">
-        </div>
-      </div>
-    </div>
-  </section><!-- End Hero -->
-
+<ul id="slider">
+	<li>
+		<a href="#">
+			<img src="page/front/img/1.jpg" alt="Alter Apfelbaum"/>
+		</a>
+	</li>
+	<li>
+    	<a href="#">
+			<img src="page/front/img/2.jpg" alt="Alter Apfelbaum"/>
+    	</a>
+	</li>
+	    
+     
+         <p>
+          <b> A.A Dones Dental Clinic </b> <br>
+		  General Dentristry  & Orthodontics <br>
+		  We Take your Smile to Heart <br>
+		  <?php if(isset($_SESSION['type'])){
+				if($_SESSION['type'] == 'patient'){
+			?>
+			<a href="user/index.php" class="btn btn-md btn-info"> Schedule an Appointment </a>
+		  <?php } } else { ?>
+		  	<a href="register.php" class="btn btn-md btn-primary"> Schedule an Appointment </a>
+		  <?php } ?>
+         </p>
+    
+</ul>
+<br>
+	
   <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>About Us</h2>
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-12">
-            <p align="justify">
-				<?php 
-				$tbl_about = $mysqli->query("SELECT * from tbl_about where page='About'");
-				$info1     = $tbl_about->fetch_assoc();
-				echo $info1['content'];
-				?>
-            </p>
-            
-          </div>
-          
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
@@ -227,10 +258,12 @@ if(isset($_SESSION['type'])){
           <h2>Services</h2>
         </div>
         <div class="row">
+		
 		<?php while($val = $tbl_offer->fetch_object()){ ?>
+		
 			  <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
 			  <a href=""  data-bs-toggle="modal" data-bs-target="#servicesdetails<?php echo $val->id;?>">
-				<div class="icon-box iconbox-blue">
+				<div class="icon-box iconbox-blue"  id="cardhover">
 				  <h4><?php echo $val->service;?></h4>
 				  <h4> ₱ <?php echo number_format($val->price,2);?></h4>
 				</div>
@@ -255,81 +288,80 @@ if(isset($_SESSION['type'])){
                   </div>
                 </div>
              </div>
-			  
+			
 		<?php  } ?>
         </div>
 
       </div>
     </section>
 	<!-- ======= Services Section ======= -->
-    <section id="doctors" class="doctors section-bg">
+    <section id="doctors" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Our Doctors</h2>
+          <h2>Our Dentist</h2>
         </div>
-        <div class="row">
-		<?php while($val = $tbl_doctors->fetch_object()){ ?>
-			<div class="col-sm-6 col-md-6 col-lg-6 mt-4">
-                <div class="card">
-				<center>
-				<br>
-                    <img class=""  src="page/front/doctor/<?php echo $val->photo;?>" width="250px">
-				<br>
-				<br>
-                    <div class="card-block">
-					<h4><?php echo $val->name;?></h4>
+		
+		  <div class="row">
+		<?php while($val1 = $tbl_doctors->fetch_object()){ ?>
+		
+			  <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+			  <a href=""  data-bs-toggle="modal" data-bs-target="#servicesdetails1<?php echo $val1->doctor_id;?>">
+				<div class="icon-box iconbox-blue"  id="cardhover">
+                    <img class=""  src="page/front/doctor/<?php echo $val1->photo;?>" width="250px" height="250px;">
+					<h4><?php echo $val1->name;?></h4>
+				</div>
+				</a>
+			  </div>
+				<div class="modal fade" id="servicesdetails1<?php echo $val1->doctor_id;?>" tabindex="-1"  data-backdrop="false">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"> <?php echo $val1->name;?></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-				</center>
+                    <div class="modal-body">
+					  <p>Dentist Time : <br> <br><?php echo $val1->times .' - '.  $val1->timee;?></p>
+					  <p>Dentist Details : <br> <br><?php echo $val1->details;?></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
                 </div>
-            </div>
-			 
-			
+             </div>
 			  
 		<?php  } ?>
         </div>
+     
 
       </div>
     </section>
-	<!-- End Sevices Section -->    <!-- ======= Services Section ======= -->
-    <section id="calendar" class="services section-bg">
+
+   
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Calendar</h2>
+          <h2>About Us</h2>
         </div>
-        <div class="row">
-			 <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-			<br>
-			 <h5> Legends : </h5>
-				<p>  <button style="background-color:red;withd:2px !important;" > &nbsp; &nbsp; </button> Red - Full Schedules 
-		      <button style="background-color:blue;" > &nbsp; &nbsp; </button> Blue - Events and Promos 
-			 <button  style="background-color:green;" > &nbsp; &nbsp; </button> Green - Approved Appointments</p>
-				<hr>
-				<div id="calendars"></div>
-            </div>
+
+        <div class="row content">
+          <div class="col-lg-12">
+            <p align="justify">
+				<?php 
+				$tbl_about = $mysqli->query("SELECT * from tbl_about where page='About'");
+				$info1     = $tbl_about->fetch_assoc();
+				echo $info1['content'];
+				?>
+            </p>
+            
           </div>
-		
-		
-
-        </div> 
-        </div>
-
-      </div>
-    </section><!-- End Sevices Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
-
-        <div>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61844.84608596995!2d121.01813007910155!3d14.351875499999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d7ea7f339039%3A0x2a8fdfabb15fdd05!2sM.%20L.%20Orense%20Dental%20Clinic!5e0!3m2!1sen!2sph!4v1636052845789!5m2!1sen!2sph" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+             <div class="col-lg-12">
+            <p align="justify">
+			        <div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.5507479823505!2d120.85772041152127!3d14.395385082008195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33962c8e09f6a129%3A0x17cf71d160d9a1a5!2sDones%20Dental%20Clinic!5e0!3m2!1sen!2sph!4v1684535998780!5m2!1sen!2sph" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
         <div class="row mt-5">
@@ -366,8 +398,8 @@ if(isset($_SESSION['type'])){
 				<?php 
 				$tbl_email = $mysqli->query("SELECT * from tbl_about where page='Facebook'");
 				$info3     = $tbl_email->fetch_assoc();
-				echo $info3['content'];
 				?>
+				<a href="<?php echo $info3['content'];?>" target="_blank"> <?php echo $info3['content'];?></a>
 				</p>
               </div>
 
@@ -390,8 +422,15 @@ if(isset($_SESSION['type'])){
         
         </div>
 
+            </p>
+            
+          </div>
+          
+        </div>
+
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End About Section -->
+
 
   </main><!-- End #main -->
 
@@ -609,3 +648,17 @@ if(isset($_SESSION['type'])){
         </div>
 		
 </html>
+
+
+<script>
+$(function(){
+	$('#slider li').hide().filter(':first').show();
+	setInterval(slideshow, 3000);
+});
+
+function slideshow() {
+	$('#slider li:first').fadeOut('slow').next().fadeIn('slow').end().appendTo('#slider');
+}
+
+</script>
+

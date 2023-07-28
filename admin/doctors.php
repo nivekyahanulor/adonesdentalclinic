@@ -2,11 +2,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Services </h1>
+      <h1>Dentist </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Services</li>
+          <li class="breadcrumb-item active">Dentist</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -16,7 +16,7 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">List of Doctors <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addservice">  <i class="bi bi-calendar2-plus"></i> ADD DOCTORS </button></h5>
+              <h5 class="card-title">List of Doctors <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addservice">  <i class="bi bi-calendar2-plus"></i> ADD DENTIST </button></h5>
 					<?php 
 						if(isset($_GET['added'])){
 							echo '<div class="alert alert-success alert-dismissible fade show" role="alert"> <i class="bi bi-check-circle me-1"></i> DOCTOR DATA ADDED ! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
@@ -32,6 +32,7 @@
                   <tr>
                     <th scope="col" class="text-start"> NAME</th>
                     <th scope="col" class="text-start"> TIME</th>
+                    <th scope="col" class="text-start"> DETAILS</th>
                     <th scope="col" class="text-start"> PHOTO</th>
                     <th scope="col" class="text-center"> ACTION </th>
                   </tr>
@@ -41,6 +42,7 @@
                   <tr>
                     <td class="text-start"><a href="doctor-appointments.php?id=<?php echo $val->doctor_id;?>&name=<?php echo $val->name;?>"><?php echo $val->name;?></a></td>
                     <td class="text-start"><?php echo $val->times .' - ' .  $val->timee;?></td>
+                    <td class="text-start"><?php echo $val->details ;?></td>
                     <td class="text-start"><img src="../page/front/doctor/<?php echo $val->photo;?>" width="200px"></td>
                     <td class="text-center">
 						<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#edit<?php echo $val->doctor_id;?>"> <i class="bi bi-pencil-square"></i></button>
@@ -63,7 +65,44 @@
 							  <input type="hidden" value="<?php echo $val->doctor_id;?>" name="id" >
 							</div>
 							
-							
+						<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Time Start : </label>
+						  <select type="time" class="form-control" name="times" required>
+								<option value=""> - Select Time -</option>
+								<option <?php if($val->times =='8:00 AM') { echo "selected"; } else {}?> > 8:00 AM</option>
+								<option <?php if($val->times =='9:00 AM') { echo "selected"; } else {}?> > 9:00 AM</option>
+								<option <?php if($val->times =='10:00 AM') { echo "selected"; } else {}?> > 10:00 AM</option>
+								<option <?php if($val->times =='11:00 AM') { echo "selected"; } else {}?> > 11:00 AM</option> 
+								<option <?php if($val->times =='1:00 PM') { echo "selected"; } else {}?> > 1:00 PM</option>
+								<option <?php if($val->times =='2:00 PM') { echo "selected"; } else {}?> > 2:00 PM</option>
+								<option <?php if($val->times =='3:00 PM') { echo "selected"; } else {}?> > 3:00 PM</option>
+								<option <?php if($val->times =='4:00 PM') { echo "selected"; } else {}?> > 4:00 PM</option>
+								<option <?php if($val->times =='5:00 PM') { echo "selected"; } else {}?> > 5:00 PM</option>
+								<option <?php if($val->times =='6:00 PM') { echo "selected"; } else {}?> > 6:00 PM</option>
+								<option <?php if($val->times =='7:00 PM') { echo "selected"; } else {}?> > 7:00 PM</option>
+						  </select>
+						</div>
+						<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Time End : </label>
+						 <select type="time" class="form-control" name="timee" required>
+								<option value=""> - Select Time -</option>
+								<option <?php if($val->timee =='8:00 AM') { echo "selected"; } else {}?> > 8:00 AM</option>
+								<option <?php if($val->timee =='9:00 AM') { echo "selected"; } else {}?> > 9:00 AM</option>
+								<option <?php if($val->timee =='10:00 AM') { echo "selected"; } else {}?> > 10:00 AM</option>
+								<option <?php if($val->timee =='11:00 AM') { echo "selected"; } else {}?> > 11:00 AM</option> 
+								<option <?php if($val->timee =='1:00 PM') { echo "selected"; } else {}?> > 1:00 PM</option>
+								<option <?php if($val->timee =='2:00 PM') { echo "selected"; } else {}?> > 2:00 PM</option>
+								<option <?php if($val->timee =='3:00 PM') { echo "selected"; } else {}?> > 3:00 PM</option>
+								<option <?php if($val->timee =='4:00 PM') { echo "selected"; } else {}?> > 4:00 PM</option>
+								<option <?php if($val->timee =='5:00 PM') { echo "selected"; } else {}?> > 5:00 PM</option>
+								<option <?php if($val->timee =='6:00 PM') { echo "selected"; } else {}?> > 6:00 PM</option>
+								<option <?php if($val->timee =='7:00 PM') { echo "selected"; } else {}?> > 7:00 PM</option>
+						  </select>
+						</div>
+						<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Dentist Details : </label>
+						  <textarea type="text" class="form-control" name="details" required><?php echo $val->details;?></textarea>
+						</div>
 							<div class="col-md-12">
 							  <label for="inputName5" class="form-label">Photo : </label>
 							  <input type="file" class="form-control" name="image" >
@@ -126,7 +165,7 @@
                     <div class="modal-body">
                       <form class="row g-3" method="POST"  enctype="multipart/form-data">
 						<div class="col-md-12">
-						  <label for="inputName5" class="form-label">Doctor Name : </label>
+						  <label for="inputName5" class="form-label">Dentist Name : </label>
 						  <input type="text" class="form-control" name="name" required>
 						</div>
 						<div class="col-md-12">
@@ -163,7 +202,10 @@
 								<option> 7:00 PM</option>
 						  </select>
 						</div>
-					
+						<div class="col-md-12">
+						  <label for="inputName5" class="form-label">Dentist Details : </label>
+						  <textarea type="text" class="form-control" name="details" required></textarea>
+						</div>
 						<div class="col-md-12">
 						  <label for="inputName5" class="form-label">Photo : </label>
 						  <input type="file" class="form-control" name="image" required>

@@ -25,6 +25,17 @@
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	 <script>
+	  $('.password1').on('keyup', function () {
+	  if ($('.password').val() == $('.password1').val()) {
+		$(".process-add").show();
+		$('.message').html('Password Match').css('color', 'green');
+	  } else {
+		$(".process-add").hide();
+		$('.message').html('Not Password Match').css('color', 'red');
+	  }
+	});
+  </script>
   <script>
  	$('#cpassword').on('change', function() {
 		var passhash = CryptoJS.MD5(this.value).toString();

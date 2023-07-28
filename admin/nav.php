@@ -157,7 +157,7 @@
 		<li class="nav-item">
         <a class="nav-link <?php echo $z;?>" href="doctors.php">
           <i class="bi bi-person"></i>
-          <span>Doctors</span>
+          <span>Dentist</span>
         </a>
       </li>
 	

@@ -129,7 +129,7 @@
             </div>
 
            
-			<div class="col-xxl-12 col-xl-12">
+			<!---<div class="col-xxl-12 col-xl-12">
               <div class="card info-card customers-card">
                 <div class="card-body">
                   
@@ -138,7 +138,7 @@
 
                 </div>
               </div>
-            </div>
+            </div>-->
 
            
 

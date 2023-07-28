@@ -38,7 +38,7 @@
 							</div>
 							<div class="col-4">
 							<div style="height:30px;"></div>
-							<button type="submit" class="btn btn-primary" name="filter-appointments"><i class="bi bi-filter-circle"></i> Filter </button>
+							<button type="submit" class="btn btn-primary" name="filter-appointments"><i class="bi bi-filter-circle"></i> Filter Date</button>
 							</div>
 					</form>
 					<br>
